@@ -1,28 +1,31 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import GifList from './components/GifList'
-import data from './data/gifs'
+import GifForm from './components/GifForm';
 
 function App(props) {
-  const gifs = data;
-  const loading = false;
-  const error = "";
-  
+  const { loading, error } = props;
+
   return (
     <div className="App">
       <h1> Find Gifs Here:</h1>
-
-      <form>
-        <input />
-        <button>Search</button>
-      </form>
+      <GifForm />
 
       {
-        loading ? <h3> Looking for Gif...</h3> : <GifList gifs={gifs} />
+        (error !== "") && <h3>{error}</h3>
       }
+      {
+        loading ? <h3> Looking for Gif...</h3> : <GifList/>
+      }
+      
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    loading: state.loading,
+    error: state.error,
+  }
+}
+export default connect(mapStateToProps)(App);
