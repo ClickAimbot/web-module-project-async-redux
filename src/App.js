@@ -2,23 +2,23 @@ import { connect } from 'react-redux';
 import './App.css';
 import { useEffect } from 'react';
 
-import { fetchGifs } from './actions';
+import { getGifs } from './actions';
 
 import GifList from './components/GifList'
 import GifForm from './components/GifForm';
 
-import axios from 'axios';
-
 function App(props) {
-  const { loading, error } = props;
+  const { loading, error, getGifs } = props;
 
   useEffect(() => {
-    console.log("fetch start")
-    props.fetchGifs();
-    axios.get("https://api.giphy.com/v1/gifs/search?api_key=gJ750fydf758eYuCV01yOiKF9fSbVESt&q=Marvel&limit=5&offset=5&rating=g&lang=en&bundle=clips_grid_picker")
-      .then(res => {
-        console.log(res)
-      })
+    // console.log("fetch start")
+    getGifs();
+    // props.fetchGifs();
+    // axios.get("https://api.giphy.com/v1/gifs/search?api_key=gJ750fydf758eYuCV01yOiKF9fSbVESt&q=Marvel&limit=5&offset=5&rating=g&lang=en&bundle=clips_grid_picker")
+      // .then(res => {
+      //   console.log(res.data.data)
+      //   props.gifsSuccess(res.data.data)
+      // })
   },[]);
   return (
     <div className="App">
@@ -42,4 +42,4 @@ const mapStateToProps = (state) => {
     error: state.error,
   }
 }
-export default connect(mapStateToProps, { fetchGifs })(App);
+export default connect(mapStateToProps, { getGifs })(App);
