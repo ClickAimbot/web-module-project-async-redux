@@ -4,7 +4,7 @@ import { FETCH_GIFS, GIFS_SUCCESS } from "../actions";
 const initialState = {
     gifs: data,
     loading: false,
-    error: ""
+    error: "",
 }
 
 const reducer = (state = initialState, action) => {

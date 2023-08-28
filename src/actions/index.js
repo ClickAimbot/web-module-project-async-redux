@@ -3,7 +3,7 @@ import axios from 'axios';
 export const FETCH_GIFS = "FETCH_GIFS";
 export const GIFS_SUCCESS = "GIFS_SUCCESS";
 
-export const getGifs = () => {
+export const getGifs = (searchTerm) => {
     return (dispatch => {
         dispatch(fetchGifs());
         axios.get("https://api.giphy.com/v1/gifs/search?api_key=gJ750fydf758eYuCV01yOiKF9fSbVESt&q=Marvel&limit=5&offset=5&rating=g&lang=en&bundle=clips_grid_picker")
